@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClassRecordTest {
-    private ClassRecord CreateRecord() {
+    private ClassRecord createRecord() {
         ClassRecord r = new ClassRecord();
         r.topicCode = "COMP1701";
         r.topicName = "Game Design";
@@ -25,8 +25,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @DisplayName("Test if fields are correctly assigned")
     void TestFieldCorrect() {
-        ClassRecordTest r = CreateRecord();
+        ClassRecord r = createRecord();
         assertEquals("COMP1701", r.topicCode);
         assertEquals("Game Design", r.topicName);
         assertEquals("Tonsley", r.campus);
@@ -35,24 +36,51 @@ class ClassRecordTest {
     }
 }
     @Test
+    @DisplayName("Test import key generation")
     void TestImportKey() {
-        ClassRecord r = CreateRecord();
+        ClassRecord r = createRecord();
         String key = r.importKey();
         assertTrue(key.contains("comp1701"));
         assertTrue(key.contains("Wednesday"));
     }
 
     @Test
+    @DisplayName("Returns False for non lectures")
     void TestLectureFalse() {
-        ClassRecord r = CreateRecord();
-        assertFalse(r.isLecture));
+        ClassRecord r = createRecord();
+        assertFalse(r.isLecture());
     }
 
     @Test
+    @DisplayName("Group Key excludes date and class type")
     void TestDateExclude() {
-        ClassRecord r = ClassRecord();
+        ClassRecord r = createRecord();
         String key = r.groupKey();
         assertFalse(key.contains("wednesday"));
         assertFalse(key.contains("workshop"));
     }
-}
+
+    @Test
+    @DisplayName("Group Key includes topic code and campus")
+    void TestGroupKey() {
+        ClassRecord r = createRecord();
+        String key = r.groupKey();
+        assertTrue(key.contains("comp1701"));
+        assertTrue(key.contains("tonsley"));
+    }
+
+    @Test
+    @DisplayName("Returns empty string if class")
+    void testFullTopic() {
+        ClassRecord r = createRecord();
+        String toString = r.toString();
+        assertTrue(toString.contains("COMP1701"));
+        assertTrue(toString.contains("Game Design"));
+    }
+
+    @Test
+    @DisplayName("location combines building and room")
+    void testLocationCapacity() {
+        ClassRecord r = createRecord();
+        assertEquals("Tonsley T1 1.008 Lecture Room", r.location());
+    }
