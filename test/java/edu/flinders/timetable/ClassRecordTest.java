@@ -34,7 +34,7 @@ class ClassRecordTest {
         assertEquals("2", r.semester);
         assertEquals("Wednesday", r.day);
     }
-}
+
     @Test
     @DisplayName("Test import key generation")
     void TestImportKey() {
@@ -70,17 +70,17 @@ class ClassRecordTest {
     }
 
     @Test
-    @DisplayName("Returns empty string if class")
+    @DisplayName("returns topic code and name combined)")
     void testFullTopic() {
         ClassRecord r = createRecord();
-        String toString = r.toString();
-        assertTrue(toString.contains("COMP1701"));
-        assertTrue(toString.contains("Game Design"));
+        String result = r.topicFull();
+        assertTrue(result.contains("COMP1701"));
+        assertTrue(result.contains("Game Design"));
     }
 
     @Test
     @DisplayName("location combines building and room")
     void testLocationCapacity() {
         ClassRecord r = createRecord();
-        assertEquals("Tonsley T1 1.008 Lecture Room", r.location());
+        assertEquals("Tonsley T1 1.008 Lecture Room", r.locationFull());
     }
