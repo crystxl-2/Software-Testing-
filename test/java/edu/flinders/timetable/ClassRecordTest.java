@@ -3,6 +3,7 @@ package edu.flinders.timetable;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.beans.Transient;
 
 import org.junit.jupiter.api.DisplayName;
 
@@ -110,5 +111,21 @@ class ClassRecordTest {
         ClassRecord r = createRecord();
         String time = r.startTime + " - " + r.endTime;
         assertEquals("10:00 - 11:00", time);
+    }
+
+    @Test
+    @DisplayName("Throw an error code if topic code is null")
+    void testNullTopicCode() {
+        ClassRecord r = new ClassRecord();
+        r.topicCode = null;
+        assertThrows(IllegalArgumentException.class, r::validate);
+    }
+
+
+    @Test
+    @DisplayName("Throw an error for any random/invalid fields given")
+    void testRandomFields() {
+        ClassRecord r = createRecord();
+        assertThrows(IllegalArgumentException.class, () -> set.Field("RandomField", "value"));
     }
 }
