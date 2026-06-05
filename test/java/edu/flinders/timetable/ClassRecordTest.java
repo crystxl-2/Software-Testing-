@@ -95,9 +95,4 @@ class ClassRecordTest {
         r.className = "Lecture";
         assertTrue(r.isLecture());
     }
-
-    @Test
-    @DisplayName
-
-
-
+}
