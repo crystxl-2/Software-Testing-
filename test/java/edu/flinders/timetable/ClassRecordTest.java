@@ -29,6 +29,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(1)
+    @Name("Carl De Guzman")
+    @Tag("Critical")
     @DisplayName("Test if fields are correctly assigned")
     void TestFieldCorrect() {
         ClassRecord r = createRecord();
@@ -40,6 +43,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(2)
+    @Name("Carl De Guzman")
+    @Tag("Core")
     @DisplayName("Returns availability in correct format")
     void TestAvailabilityFull() {
         ClassRecord r = createRecord();
@@ -48,6 +54,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(3)
+    @Name("Carl De Guzman")
+    @Tag("Core")
     @DisplayName("Test import key generation")
     void TestImportKey() {
         ClassRecord r = createRecord();
@@ -57,6 +66,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(4)
+    @Name("Carl De Guzman")
+    @Tag("Core")
     @DisplayName("Returns False for non lectures")
     void TestLectureFalse() {
         ClassRecord r = createRecord();
@@ -64,6 +76,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(5)
+    @Name("Carl De Guzman")
+    @Tag("Core")
     @DisplayName("Group Key excludes date and class type")
     void TestDateExclude() {
         ClassRecord r = createRecord();
@@ -73,6 +88,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(6)
+    @Name("Carl De Guzman")
+    @Tag("Additional")
     @DisplayName("Group Key includes topic code and campus")
     void TestGroupKey() {
         ClassRecord r = createRecord();
@@ -82,6 +100,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(7)
+    @Name("Carl De Guzman")
+    @Tag("Core")
     @DisplayName("returns topic code and name combined)")
     void testFullTopic() {
         ClassRecord r = createRecord();
@@ -91,6 +112,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(8)
+    @Name("Carl De Guzman")
+    @Tag("Core")
     @DisplayName("location combines building and room")
     void testLocationCapacity() {
         ClassRecord r = createRecord();
@@ -98,6 +122,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(9)
+    @Name("Carl De Guzman")
+    @Tag("Additional")
     @DisplayName("returns true for Lecture")
     void testIsLecture() {
         ClassRecord r = createRecord();
@@ -106,6 +133,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(10)
+    @Name("Carl De Guzman")
+    @Tag("Additional")
     @DisplayName("Check Class time is correctly formatted")
     void testClassTime() {
         ClassRecord r = createRecord();
@@ -114,6 +144,9 @@ class ClassRecordTest {
     }
 
     @Test
+    @Order(11)
+    @Name("Carl De Guzman")
+    @Tag("Core")
     @DisplayName("Throw an error code if topic code is null")
     void testNullTopicCode() {
         ClassRecord r = new ClassRecord();
@@ -123,6 +156,9 @@ class ClassRecordTest {
 
 
     @Test
+    @Order(12)
+    @Name("Carl De Guzman")
+    @Tag("Critical")
     @DisplayName("Throw an error for any random/invalid fields given")
     void testRandomFields() {
         ClassRecord r = createRecord();
