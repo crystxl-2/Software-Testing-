@@ -1,12 +1,14 @@
 package edu.flinders.timetable;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.TestMethodOrder;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.beans.Transient;
-
-import org.junit.jupiter.api.DisplayName;
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ClassRecordTest {
     private ClassRecord createRecord() {
         ClassRecord r = new ClassRecord();
@@ -30,7 +32,6 @@ class ClassRecordTest {
 
     @Test
     @Order(1)
-    @Name("Carl De Guzman")
     @Tag("Critical")
     @DisplayName("Test if fields are correctly assigned")
     void TestFieldCorrect() {
@@ -44,7 +45,6 @@ class ClassRecordTest {
 
     @Test
     @Order(2)
-    @Name("Carl De Guzman")
     @Tag("Core")
     @DisplayName("Returns availability in correct format")
     void TestAvailabilityFull() {
@@ -55,7 +55,6 @@ class ClassRecordTest {
 
     @Test
     @Order(3)
-    @Name("Carl De Guzman")
     @Tag("Core")
     @DisplayName("Test import key generation")
     void TestImportKey() {
@@ -67,7 +66,6 @@ class ClassRecordTest {
 
     @Test
     @Order(4)
-    @Name("Carl De Guzman")
     @Tag("Core")
     @DisplayName("Returns False for non lectures")
     void TestLectureFalse() {
@@ -77,7 +75,6 @@ class ClassRecordTest {
 
     @Test
     @Order(5)
-    @Name("Carl De Guzman")
     @Tag("Core")
     @DisplayName("Group Key excludes date and class type")
     void TestDateExclude() {
@@ -89,7 +86,6 @@ class ClassRecordTest {
 
     @Test
     @Order(6)
-    @Name("Carl De Guzman")
     @Tag("Additional")
     @DisplayName("Group Key includes topic code and campus")
     void TestGroupKey() {
@@ -101,9 +97,8 @@ class ClassRecordTest {
 
     @Test
     @Order(7)
-    @Name("Carl De Guzman")
     @Tag("Core")
-    @DisplayName("returns topic code and name combined)")
+    @DisplayName("Returns topic code and name combined")
     void testFullTopic() {
         ClassRecord r = createRecord();
         String result = r.topicFull();
@@ -113,9 +108,8 @@ class ClassRecordTest {
 
     @Test
     @Order(8)
-    @Name("Carl De Guzman")
     @Tag("Core")
-    @DisplayName("location combines building and room")
+    @DisplayName("Location combines building and room")
     void testLocationCapacity() {
         ClassRecord r = createRecord();
         assertEquals("Tonsley T1, 1.08 Lecture Room", r.locationFull());
@@ -123,9 +117,8 @@ class ClassRecordTest {
 
     @Test
     @Order(9)
-    @Name("Carl De Guzman")
     @Tag("Additional")
-    @DisplayName("returns true for Lecture")
+    @DisplayName("Returns true for Lecture")
     void testIsLecture() {
         ClassRecord r = createRecord();
         r.className = "Lecture";
@@ -134,9 +127,8 @@ class ClassRecordTest {
 
     @Test
     @Order(10)
-    @Name("Carl De Guzman")
     @Tag("Additional")
-    @DisplayName("Check Class time is correctly formatted")
+    @DisplayName("Check class time is correctly formatted")
     void testClassTime() {
         ClassRecord r = createRecord();
         String time = r.startTime + " - " + r.endTime;
@@ -145,23 +137,20 @@ class ClassRecordTest {
 
     @Test
     @Order(11)
-    @Name("Carl De Guzman")
     @Tag("Core")
-    @DisplayName("Throw an error code if topic code is null")
+    @DisplayName("Throw an error if topic code is null")
     void testNullTopicCode() {
         ClassRecord r = new ClassRecord();
         r.topicCode = null;
         assertThrows(IllegalArgumentException.class, r::validate);
     }
 
-
     @Test
     @Order(12)
-    @Name("Carl De Guzmann")
     @Tag("Critical")
     @DisplayName("Throw an error for any random/invalid fields given")
     void testRandomFields() {
         ClassRecord r = createRecord();
-        assertThrows(IllegalArgumentException.class, () -> set.Field("RandomField", "value"));
+        assertThrows(IllegalArgumentException.class, () -> r.setField("RandomField", "value"));
     }
 }
