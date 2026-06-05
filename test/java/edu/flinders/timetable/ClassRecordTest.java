@@ -44,7 +44,7 @@ class ClassRecordTest {
         ClassRecord r = createRecord();
         String key = r.importKey();
         assertTrue(key.contains("comp1701"));
-        assertTrue(key.contains("Wednesday"));
+        assertTrue(key.contains("wednesday"));
     }
 
     @Test
