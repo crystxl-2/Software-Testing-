@@ -2,9 +2,9 @@ package edu.flinders.timetable;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.DisplayName;
 
-import java.beans.Transient;
+
+import org.junit.jupiter.api.DisplayName;
 
 class ClassRecordTest {
     private ClassRecord createRecord() {
@@ -36,6 +36,14 @@ class ClassRecordTest {
         assertEquals("Tonsley", r.campus);
         assertEquals("2", r.semester);
         assertEquals("Wednesday", r.day);
+    }
+
+    @Test
+    @DisplayName("Returns availability in correct format")
+    void TestAvailabilityFull() {
+        ClassRecord r = createRecord();
+        String result = r.availabilityFull();
+        assertEquals("In person - Tonsley - S2 - 1", result);
     }
 
     @Test
@@ -85,7 +93,7 @@ class ClassRecordTest {
     @DisplayName("location combines building and room")
     void testLocationCapacity() {
         ClassRecord r = createRecord();
-        assertEquals("Tonsley T1 1.008 Lecture Room", r.locationFull());
+        assertEquals("Tonsley T1, 1.08 Lecture Room", r.locationFull());
     }
 
     @Test
@@ -94,5 +102,13 @@ class ClassRecordTest {
         ClassRecord r = createRecord();
         r.className = "Lecture";
         assertTrue(r.isLecture());
+    }
+
+    @Test
+    @DisplayName("Check Class time is correctly formatted")
+    void testClassTime() {
+        ClassRecord r = createRecord();
+        String time = r.startTime + " - " + r.endTime;
+        assertEquals("10:00 - 11:00", time);
     }
 }
