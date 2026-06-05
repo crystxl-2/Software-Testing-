@@ -2,6 +2,9 @@ package edu.flinders.timetable;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+
+import java.beans.Transient;
 
 class ClassRecordTest {
     private ClassRecord createRecord() {
@@ -84,3 +87,17 @@ class ClassRecordTest {
         ClassRecord r = createRecord();
         assertEquals("Tonsley T1 1.008 Lecture Room", r.locationFull());
     }
+
+    @Test
+    @DisplayName("returns true for Lecture")
+    void testIsLecture() {
+        ClassRecord r = createRecord();
+        r.className = "Lecture";
+        assertTrue(r.isLecture());
+    }
+
+    @Test
+    @DisplayName
+
+
+
