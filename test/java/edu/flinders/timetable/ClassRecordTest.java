@@ -157,7 +157,7 @@ class ClassRecordTest {
 
     @Test
     @Order(12)
-    @Name("Carl De Guzman")
+    @Name("Carl De Guzmann")
     @Tag("Critical")
     @DisplayName("Throw an error for any random/invalid fields given")
     void testRandomFields() {
